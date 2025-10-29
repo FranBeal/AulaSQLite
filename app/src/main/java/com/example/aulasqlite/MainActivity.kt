@@ -1,7 +1,9 @@
 package com.example.aulasqlite
 
+import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -49,9 +51,54 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun btIncluirOnClick(){}
-    private fun btAlterarOnClick(){}
-    private fun btExcluirOnClick(){}
+    private fun btIncluirOnClick(){
+        val registro = ContentValues()
+        registro.put("nome", binding.etNome.text.toString())
+        registro.put("telefone", binding.etTelefone.text.toString())
+
+        banco.insert("cadastro", null, registro)
+        Toast.makeText(
+            this, "Registro incluído!", Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun btAlterarOnClick(){
+        val registro = ContentValues()
+        registro.put("nome", binding.etNome.text.toString())
+        registro.put("telefone", binding.etTelefone.text.toString())
+
+        banco.update("cadastro", registro,
+            "_id=${binding.etCodigo.text.toString()}",
+            null)
+        Toast.makeText(
+            this, "Registro alterado!", Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun btExcluirOnClick(){
+        banco.delete("cadastro",
+            "_id=${binding.etCodigo.text.toString()}",
+            null)
+        Toast.makeText(
+            this, "Registro excluido!", Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun btListarOnClick(){
+        val registros = banco.query("cadastro",null,null,
+            null,null,null,null)
+        val saida = StringBuilder()
+        while(registros.moveToNext()){
+            saida.append(registros.getString(1))
+            saida.append(" - ")
+            saida.append(registros.getString(2))
+            saida.append("\n")
+        }
+        Toast.makeText(
+            this, saida.toString(), Toast.LENGTH_LONG
+        ).show()
+    }
+
     private fun btPesquisarOnClick(){}
-    private fun btListarOnClick(){}
+
 }
