@@ -1,5 +1,6 @@
 package com.example.aulasqlite
 
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.example.aulasqlite.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var banco: SQLiteDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +18,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.main)
 
         setButtonsListeners()
+
+        banco = SQLiteDatabase.openOrCreateDatabase(
+            this.getDatabasePath("dbFile.sqlite"),
+            null
+        )
+
+        banco.execSQL("CREATE TABLE IF NOT EXISTS cadastro (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nome TEXT," +
+                "telefone TEXT)"
+        )
     }
 
     private fun setButtonsListeners() {
