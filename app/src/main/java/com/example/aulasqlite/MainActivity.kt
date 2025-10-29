@@ -99,6 +99,20 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    private fun btPesquisarOnClick(){}
+    private fun btPesquisarOnClick(){
+        val registros = banco.query("cadastro",null,
+            "_id=?",arrayOf(binding.etCodigo.text.toString()),
+            null,null,null)
+
+        if(registros.moveToNext()){
+            binding.etNome.setText(registros.getString(1))
+            binding.etTelefone.setText(registros.getString(2))
+        }else{
+            Toast.makeText(
+                this, "Registro não encontrado!", Toast.LENGTH_LONG
+            ).show()
+        }
+
+    }
 
 }
