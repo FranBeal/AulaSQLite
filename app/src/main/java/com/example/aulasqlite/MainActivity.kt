@@ -1,6 +1,7 @@
 package com.example.aulasqlite
 
 import android.content.ContentValues
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.widget.Toast
@@ -78,7 +79,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun btListarOnClick(){
-        val registros = banco.listar()
+        val intent = Intent(this, ListarActivity::class.java)
+        startActivity(intent)
+        /*val registros = banco.listar()
 
         val saida = StringBuilder()
         while(registros.moveToNext()){
@@ -90,6 +93,8 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(
             this, saida.toString(), Toast.LENGTH_LONG
         ).show()
+
+         */
     }
 
     private fun btPesquisarOnClick(){
