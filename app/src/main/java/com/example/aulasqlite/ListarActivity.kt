@@ -1,5 +1,6 @@
 package com.example.aulasqlite
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +21,23 @@ class ListarActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         banco = DatabaseHandler(this)
+
+        binding.fabIncluir.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        initAdapter()
+    }
+
+    private fun initAdapter() {
         val registros = banco.listar()
-
         val adapter = MeuAdapter(this, registros)
-
         binding.lvPrincial.adapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initAdapter()
     }
 }

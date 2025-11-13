@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:enabled="false"
         android:hint="Código" />
     <EditText
         android:id="@+id/etNome"
@@ -28,20 +29,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="Telefone" />
-    <Button
-        android:id="@+id/btIncluir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="41dp"
-        android:text="Incluir" />
+
     <Button
         android:id="@+id/btAlterar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Alterar" />
+        android:text="Salvar" />
     <Button
         android:id="@+id/btExcluir"
         android:layout_width="wrap_content"
@@ -56,11 +51,4 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Pesquisar" />
-    <Button
-        android:id="@+id/btListar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Listar" />
 </LinearLayout>
